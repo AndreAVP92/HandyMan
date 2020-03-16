@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Modelo
 {
-    public class Foto
+    public class SubCategory
     {
         public int      Id          { get; set; }
-        public string   RutaImagen  { get; set; }
+        public string   Description { get; set; }
+        public bool     State       { get; set; }
     }
 }

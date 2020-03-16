@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Modelo
 {
-    public class Rol
+    public class Permission
     {
         public int      Id          { get; set; }
-        public string   NombreRol   { get; set; }
+        public int      Module      { get; set; }
+        public string   Description { get; set; }
     }
 }

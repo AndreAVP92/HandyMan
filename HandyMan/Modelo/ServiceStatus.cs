@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Modelo
 {
-    public class Pago
+    public class ServiceStatus
     {
         public int      Id          { get; set; }
-        public string   Descripcion { get; set; }
-        public bool     Estado      { get; set; }
+        public string   Description { get; set; } //En espera, Cancelado, Reparando, Finalizado, 
+        public bool     State       { get; set; }
     }
 }

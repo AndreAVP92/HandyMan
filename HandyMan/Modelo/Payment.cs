@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Modelo
 {
-    public class SubCategoria
+    public class Payment
     {
         public int      Id          { get; set; }
-        public string   Descripcion { get; set; }
-        public bool     Estado      { get; set; }
+        public string   Description { get; set; } 
+        public bool     State       { get; set; }  
     }
 }
