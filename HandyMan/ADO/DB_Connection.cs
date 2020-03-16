@@ -15,7 +15,7 @@ namespace ADO
 
         public DB_Connection()      //conectando a base de datos
         {
-            connection = new SqlConnection("Data Source = DESKTOP-B1FI7SE\\SQLEXPRESS; Initial Catalog = RentalBike_DB; Integrated Security = True");
+            connection = new SqlConnection("Data Source = DESKTOP-B1FI7SE\\SQLEXPRESS; Initial Catalog = HandyMan_DB; Integrated Security = True");
             command = new SqlCommand();
             command.Connection = connection;
         }
