@@ -11,5 +11,12 @@ namespace Modelo
         public int      Id          { get; set; }
         public int      Module      { get; set; }
         public string   Description { get; set; }
+
+        // CONSTRUCTOR
+        public Permission(int module, string description)
+        {
+            Module      = module;
+            Description = description;
+        }
     }
 }

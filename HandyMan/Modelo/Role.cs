@@ -11,11 +11,10 @@ namespace Modelo
         public int      Id         { get; set; }
         public string   RoleName   { get; set; }
 
+        // CONSTRUCTOR
         public Role(string roleName)
         {
             RoleName = roleName;
         }
     }
-
-    
 }

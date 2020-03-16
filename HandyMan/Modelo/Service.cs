@@ -18,5 +18,18 @@ namespace Modelo
         public ServiceStatus ServiceStatus  { get; set; } // Estado en que se encuentra la solicitud de servicio
         public Payment       Payment        { get; set; } // Modo de Pago
         //public bool          State          { get; set; }
+
+        //CONSTRUCTOR
+        public Service (User customer, User handyman, string address, string description, double amount, DateTime dateService, ServiceStatus serviceStatus, Payment payment)
+        {
+            Customer = customer;
+            Handyman = handyman;
+            Address = address;
+            Description = description;
+            Amount = amount;
+            DateService = dateService;
+            ServiceStatus = serviceStatus;
+            Payment = payment;
+        }
     }
 }

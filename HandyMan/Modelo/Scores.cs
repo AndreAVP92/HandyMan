@@ -11,5 +11,12 @@ namespace Modelo
         public int    Id        { get; set; }
         public double Score     { get; set; } // Puntuación
         public string Comments  { get; set; } // Comentarios
+
+        //CONSTRUCTOR
+        public Scores(double score, string comments)
+        {
+            Score       = score;
+            Comments    = comments;
+        }
     }
 }

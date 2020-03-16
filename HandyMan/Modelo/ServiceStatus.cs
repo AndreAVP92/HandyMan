@@ -11,5 +11,12 @@ namespace Modelo
         public int      Id          { get; set; }
         public string   Description { get; set; } //En espera, Cancelado, Reparando, Finalizado, 
         public bool     State       { get; set; }
+
+        // CONSTRUCTOR
+        public ServiceStatus (string description, bool state)
+        {
+            Description = description;
+            State       = state;          
+        }
     }
 }
