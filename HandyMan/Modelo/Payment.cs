@@ -17,7 +17,6 @@ namespace Modelo
         {
             Description = description;
             State       = state;
-        }
-        
+        }        
     }
 }

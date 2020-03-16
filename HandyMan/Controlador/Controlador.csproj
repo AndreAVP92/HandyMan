@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoryBLL.cs" />
+    <Compile Include="DB_Connection.cs" />
     <Compile Include="ServiceStatusBLL.cs" />
     <Compile Include="PhotoBLL.cs" />
     <Compile Include="PaymentBLL.cs" />
