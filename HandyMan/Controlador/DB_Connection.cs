@@ -13,20 +13,20 @@ namespace Controlador
         public SqlConnection connection { get; set; }
         public SqlCommand command { get; set; }
 
-        public DB_Connection()      //conectando a base de datos
+        public DB_Connection()      //  conectando a base de datos
         {
             connection = new SqlConnection("Data Source = DESKTOP-B1FI7SE\\SQLEXPRESS; Initial Catalog = Handyman_DB; Integrated Security = True");
             command = new SqlCommand();
             command.Connection = connection;
         }
 
-        public void setQuery(string query)     //setear consulta
+        public void setQuery(string query)     //   setear consulta
         {
             command.CommandType = System.Data.CommandType.Text;
             command.CommandText = query;
         }
 
-        public void setStoreProcedure(string sp)    //setear procedimiento almacenado
+        public void setStoreProcedure(string sp)    //  setear procedimiento almacenado
         {
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.CommandText = sp;
