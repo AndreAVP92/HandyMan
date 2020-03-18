@@ -1,0 +1,190 @@
+/* CREACION DE LA BASE DE DATOS */
+IF NOT EXISTS (SELECT name FROM master.dbo.sysdatabases WHERE name = N'HandyMan_DB')
+CREATE DATABASE HandyMan_DB
+GO
+
+-- USAMOS LA BASE DE DATOS
+USE HandyMan_DB
+GO
+
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'PERMISSIONS') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+CREATE TABLE PERMISSIONS
+(
+	Id			INT			IDENTITY(1, 1)	NOT NULL,
+	Module		VARCHAR(50)						NULL, --cliente
+	Description	VARCHAR(50)						NULL, --puede cancelar un servicio, puede solicitar un servicio, puede visualizar un servicio
+	
+	CONSTRAINT PK_IdPermissions PRIMARY KEY (Id),
+) 
+GO
+
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'ROLES') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+CREATE TABLE ROLES
+(
+	Id				INT			IDENTITY(1, 1)	NOT NULL,
+	RoleName		INT							NOT NULL,
+	
+	CONSTRAINT PK_IdRole  PRIMARY KEY (Id)
+);
+GO
+
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'ROLES_DENIED_PERMISSIONS') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+CREATE TABLE ROLES_DENIED_PERMISSIONS		
+(
+	IdRole			INT NOT NULL,
+	IdPermission	INT NOT NULL
+
+	CONSTRAINT PK_RoleDeniedPermission	PRIMARY KEY (IdRole, IdPermission),
+	CONSTRAINT FK_IdRole_RDP			FOREIGN KEY (IdRole)		REFERENCES ROLES		(Id) ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT FK_IdPermission_RDP		FOREIGN KEY (IdPermission)	REFERENCES PERMISSIONS	(Id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+GO
+
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'PHOTOS') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+CREATE TABLE PHOTOS(
+	Id			INT				IDENTITY(1,1)	NOT NULL,
+	ImagePath	VARBINARY(MAX)						NULL 
+	-- la variable tipo Image se removerá en una futura versión de SQL --
+
+	CONSTRAINT PK_IdPhoto PRIMARY KEY (Id)
+);
+GO
+
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'SCORES') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+CREATE TABLE SCORES(
+	Id		INT				IDENTITY(1,1)	NOT NULL,
+	Score	DECIMAL(2,1)						NULL,
+	Comment	NVARCHAR(100)						NULL
+
+	CONSTRAINT PK_IdScores	PRIMARY KEY (Id)
+);
+GO
+
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'ADDRESSES') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+CREATE TABLE ADDRESSES(
+	Id			INT				IDENTITY(1,1)	NOT NULL,
+	Street		NVARCHAR(25)						NULL,
+	Number		INT									NULL,
+	Zip			INT									NULL,
+	Province	NVARCHAR(25)						NULL,
+	Locality	NVARCHAR(25)						NULL
+
+	CONSTRAINT PK_IdAddress PRIMARY KEY (Id)
+);
+GO
+
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'USERS') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+CREATE TABLE USERS(
+	Id				INT			IDENTITY(1,1)		NOT NULL,
+	IdPhoto			INT									NULL,
+	UserName		NVARCHAR(25)					NOT NULL,
+	Email			NVARCHAR(50)					NOT NULL,
+	Password		NVARCHAR(50)					NOT NULL,
+	IdAddress		INT									NULL,
+	LoginStatus		NVARCHAR(15)						NULL, --Conectado, Desconectado
+	RegisterDate	DATE							NOT NULL, --Sólo me interesa el dia, mes y año
+	IdScore			INT									NULL,
+	IdRole			INT								NOT NULL,
+	Status			BIT								NOT NULL
+
+	CONSTRAINT PK_IdUser		PRIMARY KEY (Id),
+	CONSTRAINT FK_IdPhoto_U		FOREIGN KEY (IdPhoto)	REFERENCES PHOTOS	 (Id) ON DELETE CASCADE ON UPDATE CASCADE, 
+	CONSTRAINT FK_IdScore_U		FOREIGN KEY (IdScore)	REFERENCES SCORES	 (Id) ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT FK_IdRole_U		FOREIGN KEY (IdRole)	REFERENCES ROLES	 (Id) ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT FK_IdAddress_U	FOREIGN KEY (IdAddress) REFERENCES ADDRESSES (Id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+GO
+
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'USERS_x_SCORES') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+CREATE TABLE USERS_x_SCORES(
+	IdUser		INT		NOT NULL,
+	IdScore		INT		NOT NULL,
+
+	CONSTRAINT PK_US			PRIMARY KEY (IdUSer, IdScore),
+	CONSTRAINT FK_IdUser_US		FOREIGN KEY (IdUser)	REFERENCES USERS  (Id),
+	CONSTRAINT FK_IdScore_US	FOREIGN KEY (IdScore)	REFERENCES SCORES (Id)
+);
+GO
+
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'CATEGORIES') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+CREATE TABLE CATEGORIES(
+	Id			INT				IDENTITY(1,1)	NOT NULL,
+	Description	NVARCHAR(30)					NOT NULL,
+	Status		BIT								NOT NULL,
+
+	CONSTRAINT PK_IdCategory PRIMARY KEY (Id)
+);
+GO
+
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'SUBCATEGORIES') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+CREATE TABLE SUBCATEGORIES(
+	Id			INT				IDENTITY(1,1)	NOT NULL,
+	Description	NVARCHAR(30)					NOT NULL,
+	Status		BIT								NOT NULL,
+
+	CONSTRAINT PK_IdSubCategory PRIMARY KEY (Id)		
+);
+GO
+
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'SUBCATEGORIES_x_CATEGORIES') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+CREATE TABLE SUBCATEGORIES_x_CATEGORIES(
+	IdSubCategory	INT		NOT NULL,
+	IdCategory		INT		NOT NULL,
+
+	CONSTRAINT PK_SCC				PRIMARY KEY (IdSubCategory, IdCategory),
+	CONSTRAINT FK_IdSubCategory_SCC	FOREIGN KEY (IdSubCategory)	REFERENCES SUBCATEGORIES (Id),
+	CONSTRAINT FK_IdCategory_SCC	FOREIGN KEY (IdCategory)	REFERENCES CATEGORIES	 (Id) ON DELETE CASCADE ON UPDATE CASCADE, --Si borro categorias, se borran todas las subcategorias
+);
+GO
+
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'HANDYMANS_x_CATEGORIES') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+CREATE TABLE HANDYMANS_x_CATEGORIES(
+	IdUsuario_HC	INT		NOT NULL,
+	IdCategory_HC	INT		NOT NULL,
+
+	CONSTRAINT PK_HC			PRIMARY KEY (IdUsuario_HC, IdCategory_HC),
+	CONSTRAINT FK_IdUsuario_HC	FOREIGN KEY (IdUsuario_HC)	REFERENCES USERS		(Id),
+	CONSTRAINT FK_IdCategory_HC	FOREIGN KEY (IdCategory_HC)	REFERENCES CATEGORIES	(Id) ON DELETE CASCADE ON UPDATE CASCADE,
+);
+GO
+
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'CONTRACT_STATUS') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+CREATE TABLE CONTRACT_STATUS (
+	Id			INT			IDENTITY(1,1)	NOT NULL,
+	Description NVARCHAR(25)				NOT NULL,
+	Status		BIT							NOT NULL
+
+	CONSTRAINT PK_IdContractStatus	PRIMARY KEY (Id) 
+);
+GO
+
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'PAYMENTS') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+CREATE TABLE PAYMENTS(
+	Id			INT			IDENTITY(1,1)	NOT NULL,
+	Description NVARCHAR(25)				NOT NULL,
+	Status		BIT							NOT NULL
+
+	CONSTRAINT PK_IdPayment	PRIMARY KEY (Id) 
+);
+GO
+
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'SERVICE') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+CREATE TABLE SERVICE(
+	Id					INT				IDENTITY(1,1)	NOT NULL,
+	IdUserCustomer		INT								NOT NULL,
+	IdUserHandyman		INT								NOT NULL,
+	Commentary			NVARCHAR(100)					NOT NULL,
+	Amount				DECIMAL(2,1)						NULL,
+	DateService			DATETIME							NULL,
+	IdServiceStatus     INT								NOT NULL,
+	IdPayment			INT									NULL,
+	Status				BIT								NOT NULL
+
+	CONSTRAINT PK_IdService			PRIMARY KEY (Id),
+	CONSTRAINT FK_IdCustomer_S		FOREIGN KEY (IdUserCustomer)	REFERENCES USERS			(Id), 
+	CONSTRAINT FK_IdHandyman_S		FOREIGN KEY (IdUserHandyman)	REFERENCES USERS			(Id),
+	CONSTRAINT FK_IdServiceStatus_S	FOREIGN KEY (IdServiceStatus)	REFERENCES CONTRACT_STATUS	(Id),
+	CONSTRAINT FK_IdPayment_S		FOREIGN KEY (IdPayment)			REFERENCES PAYMENTS			(Id)
+);
+
+
