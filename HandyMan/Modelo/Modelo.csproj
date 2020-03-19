@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Address.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="Photo.cs" />
     <Compile Include="ServiceStatus.cs" />
