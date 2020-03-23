@@ -21,10 +21,10 @@ namespace Modelo
             SubCategories   = subCategories;
         }
 
-        public Category (string description, bool state)
+        public Category (string description)
         {
             Description = description;
-            State       = state;
+            State       = true;
         }
     }
 }
