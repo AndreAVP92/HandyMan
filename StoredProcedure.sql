@@ -2,19 +2,25 @@ USE HandyMan_DB
 GO
 ---------------------------------------------------------------------------------
 ---           STORED PROCEDURE INSERTAR CATEGORIA							  ---
----------------------------------------------------------------------------------
 CREATE PROCEDURE SP_InsertCategory
 @description NVARCHAR(30)
 AS
 BEGIN
     SET NOCOUNT ON;
 		BEGIN TRY
-			INSERT INTO CATEGORIES(Description, Status) VALUES (@description, 1);
+			BEGIN TRANSACTION
+				IF NOT EXISTS (SELECT * FROM CATEGORIES WHERE Description = @description)
+					INSERT INTO CATEGORIES(Description, Status) VALUES (@description, 1);			
 			COMMIT TRANSACTION;
 		END TRY
 		BEGIN CATCH
 			PRINT ERROR_MESSAGE()
+			--Transaction uncommittable
+			IF(XACT_STATE()) = -1
 			ROLLBACK TRANSACTION;
+			--Transaction committable
+			IF(XACT_STATE()) = 1
+			COMMIT TRANSACTION;
 		END CATCH
 END;
 GO
@@ -41,14 +47,14 @@ GO
 ---------------------------------------------------------------------------------
 ---           STORED PROCEDURE ELIMINAR CATEGORIA						      ---
 ---------------------------------------------------------------------------------
-CREATE PROCEDURE spDeleteCategory(
+CREATE PROCEDURE SP_DeleteCategory(
 	@id INT
 )
 AS
 BEGIN
 	BEGIN TRY
 		--ELIMINO LOGICAMENTE LA CATEGORIA
-		UPDATE CATEGORIES SET ESTADO=0 WHERE ID=@id
+		UPDATE CATEGORIES SET Status=0 WHERE ID=@id
 	END TRY
 	BEGIN CATCH
 		PRINT ERROR_MESSAGE()
