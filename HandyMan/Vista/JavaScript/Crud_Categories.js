@@ -38,11 +38,11 @@
 //    });
 //}
 
-$(document).ready(function () {
-    buscarCategorias();
+$(document).ready(function () {   
+    mostrarCategorias();
 });
 
-function buscarCategorias() {
+function mostrarCategorias() {
     //XMLHttpRequest
     $.ajax({
         type: 'POST',
@@ -60,87 +60,64 @@ function buscarCategorias() {
 }
 
 function armarTabla(datos) {
-    if (typeof datos !== 'undefined') {
+    //if (typeof datos !== 'undefined') {
         $("#body_categories").html("");
         $.each(datos, function (k, v) {
             $.each(v, function (key, value) {
                 $("#body_categories").append(
                     "<tr>" +
-                        "<td>" +
-                            "<span class='custom-checkbox'>" +
-                                "<input type='checkbox' id='checkbox1' name='options[]' value='1'>" +
-                                    "<label for='checkbox1'>" + "</label>" +
-							"</span>" + 
-						"</td>" +
-                            //"<td>" + value.Id + "</td" > +
+      //                  "<td>" +
+      //                      "<span class='custom-checkbox'>" +
+      //                          "<input type='checkbox' id='checkbox1' name='options[]' value='1'>" +
+      //                              "<label for='checkbox1'>" + "</label>" +
+						//	"</span>" + 
+						//"</td>" +
+                            "<td>" + value.Id + "</td>" +
                             "<td>" + value.Description + "</td>" +
                             "<td>" + value.State + "</td>" +
-                            "<td style='text-align:right'>" +
+                            "<td>" +
                                 "<a href='#editCategoryModal' class='edit' data-toggle='modal' >" + "<i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i>" + "</a>" +
                                 "<a href='#deleteCategoryModal' class='delete' data-toggle='modal'>" + "<i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i>" + "</a>" +
                             "</td>" +
                     "</tr>"
-                ); // NO OLVIDAR PONER data-id PARA ASIGNAR EL ID POR CADA BOTON ELIMINAR/EDITAR
+                ); // NO OLVIDAR PONER 'data-id = value.Id' PARA ASIGNAR EL ID POR CADA BOTON ELIMINAR/EDITAR
             })
         })
-    }
+    //}
 }
 
-//$(document).ready(function () {
-//    $("#buttonSaveCategory").click(function () {
-//        $.ajax({
-//            type: "POST",
-//            url: "crud_Categories.aspx/GetUsuarios",
-//            cache: true,
-//            async: false,
-//            data: "{}",
-//            contentType: "application/json; charset=utf-8",
-//            dataType: "json",
-//            success: function (resultado) {
-//                var items = resultado.d;
-//                $.each(items, function (index, item) {
-//                    $("#body_categories").append(
-//                        "<tr>" +
-//                        "<td>" +
-//                        "<span class='custom-checkbox'>" +
-//                        "<input type='checkbox' id='checkbox1' name='options[]' value='1'>" +
-//                        "<label for='checkbox1'>" + "</label>" +
-//                        "</span>" +
-//                        "</td>" +
-//                        "<td>" + item.Id + "</td" > +
-//                        "<td>" + item.Description + "</td>" +
-//                        "<td>" + item.State + "</td>" +
-//                        "<td style='text-align:right'>" +
-//                        "<a href='#editCategoryModal' class='edit' data-toggle='modal' >" + "<i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i>" + "</a>" +
-//                        "<a href='#deleteCategoryModal' class='delete' data-toggle='modal'>" + "<i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i>" + "</a>" +
-//                        "</td>" +
-//                        "</tr>"
-//                    );
-//                });
-//            },
-//            error: function (result) {
-//                alert("Ups, ¿qué habrá pasado?");
-//            }
-//        });
-//    });
-//});
+function cargarTabla() {
+    $.ajax({
+        type: 'GET',
+        url: "crud_Categories.aspx",
+        //async: true,
+        success: function () {
+            mostrarCategorias();
+            $("#body_categories").html("");
+            //$("#body_categories").html(respuesta); //no funciona así
+        },
+         error: function (request, error) {
+             console.log(error);
+        }
+    });
+}
 
 $('#buttonSaveCategory').click(function () {
     //e.preventDefault();  //Usamos esta línea para cancelar el postback que el botón crea
     var parametros = {
         description: $('#add_inputDescription').val()
     };
-
     // Ahora hacemos la llamada tipo AJAX utilizando jQuery
     $.ajax({
         type: 'POST',                               // tipo de llamada (POST, GET)
-        url: 'crud_Categories.aspx/AddingCategory', // el URL del método que vamos a llamar
+        url: 'crud_Categories.aspx/AddingCategory', // el URL del método que vamos a llamar        
         data: JSON.stringify(parametros),           // los parámetros en formato JSON
         contentType: "application/json; charset=utf-8",
         dataType: 'json',                           // tipo de datos enviados al servidor
         success: function () {                      // función que se va a ejecutar si el pedido resulta exitoso          
-            $("#addCategoryModal").modal('hide');
-            armarTabla(data); 
+            $("#addCategoryModal").modal('hide');   // una vez dado click en aceptar, el 'hide' hará que se cierre el modal automáticamente
+            cargarTabla();
+            //armarTabla(data);            
         },
         error: function (req, stat, err) {          // función que se va a ejecutar si el pedido falla
             var error = eval("(" + req.responseText + ")");

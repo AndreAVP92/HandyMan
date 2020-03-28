@@ -94,6 +94,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="crud_Categories.aspx" />
+    <Content Include="crud_SubCategories.aspx" />
     <Content Include="Css\StyleSheetAdmin.css" />
     <Content Include="JavaScript\Crud_Categories.js" />
     <Content Include="JavaScript\Crud_general.js" />
@@ -215,6 +216,13 @@
     </Compile>
     <Compile Include="crud_Categories.aspx.designer.cs">
       <DependentUpon>crud_Categories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="crud_SubCategories.aspx.cs">
+      <DependentUpon>crud_SubCategories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="crud_SubCategories.aspx.designer.cs">
+      <DependentUpon>crud_SubCategories.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site1.Master.cs">

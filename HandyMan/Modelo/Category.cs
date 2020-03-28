@@ -20,9 +20,9 @@ namespace Modelo
             State = true;
         }
 
-        public Category(/*int id, */string description, bool state)
+        public Category(int id, string description, bool state)
         {
-            //Id = id;
+            Id = id;
             Description = description;
             State = state;
         }

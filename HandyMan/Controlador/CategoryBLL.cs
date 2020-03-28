@@ -11,7 +11,7 @@ namespace Controlador
     public class CategoryBLL
     {
         //LISTAR CATEGORÍAS
-        public List<Category> getCategories()
+        public List<Category> GetCategories()
         {
             List<Category> lista = new List<Category>();
             Category aux;
@@ -20,14 +20,15 @@ namespace Controlador
 
             try
             {
-                data.setQuery("SELECT Description, Status FROM CATEGORIES");
+                data.setQuery("SELECT Id, Description, Status FROM CATEGORIES WHERE Status = 1");
                 data.executeReader();
 
                 while (data.reader.Read())
                 {
-                    aux = new Category( /*Convert.ToInt32(data.reader["Id"]),*/
-                                        Convert.ToString(data.reader["Description"]),
-                                        Convert.ToBoolean(data.reader["Status"]));
+                    aux = new Category(     Convert.ToInt32(data.reader["Id"]),
+                                            Convert.ToString(data.reader["Description"]),
+                                            Convert.ToBoolean(data.reader["Status"])    );
+
                     lista.Add(aux);
                 }
                 return lista;
@@ -108,7 +109,7 @@ namespace Controlador
             }
         }
 
-        //VALIDACIONES
+        //          VALIDACIONES        //
 
         public bool ValidateCategory(string description)
         {

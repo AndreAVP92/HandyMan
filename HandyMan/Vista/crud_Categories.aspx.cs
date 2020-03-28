@@ -14,7 +14,7 @@ namespace Vista
 {
     public partial class crud_Categories : System.Web.UI.Page
     {
-        public static List<Category> getCategories { get; set; }
+        public static List<Category> ListCategories { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -41,9 +41,9 @@ namespace Vista
         {
             CategoryBLL categoryBLL = new CategoryBLL();
 
-            getCategories = categoryBLL.getCategories();
+            ListCategories = categoryBLL.GetCategories();
 
-            return getCategories;
+            return ListCategories;
         }
     }
 }

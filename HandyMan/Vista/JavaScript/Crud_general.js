@@ -20,4 +20,7 @@
 			$("#selectAll").prop("checked", false);
 		}
 	});
+
 });
+
+
