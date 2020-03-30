@@ -35,7 +35,8 @@ AS
 BEGIN
 	SET NOCOUNT ON;
 		BEGIN TRY
-			UPDATE CATEGORIES SET Description=@description, Status=@status WHERE Id=@id
+			BEGIN TRANSACTION
+				UPDATE CATEGORIES SET Description=@description, Status=@status WHERE Id=@id
 			COMMIT TRANSACTION;
 		END TRY
 		BEGIN CATCH

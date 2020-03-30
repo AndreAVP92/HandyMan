@@ -107,7 +107,7 @@
 		</div>
 	</div>
 	<!-- Delete Modal HTML -->
-	<%--<div id="deleteCategoryModal" class="modal fade">
+	<div id="deleteCategoryModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
 			
@@ -123,9 +123,8 @@
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
 						<input type="button" id="buttonDeleteCategory" class="btn btn-danger" value="Delete">
 					</div>
-
 			</div>
 		</div>
-	</div>--%>
+	</div>
 
 </asp:Content>

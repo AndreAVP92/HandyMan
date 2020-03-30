@@ -37,7 +37,7 @@ function armarTabla(datos) {
                             "<td>" + value.State + "</td>" +
                             "<td>" +
                                 "<a href='#editCategoryModal' class='edit' data-id = 'value.Id' data-toggle='modal' >" + "<i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i>" + "</a>" +
-                                "<a  id='deleteCategory' class='delete' data-id = 'value.Id' data-toggle='modal'>" + "<i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i>" + "</a>" +
+                                "<a href='#deleteCategoryModal' class='delete' data-id = 'value.Id' data-toggle='modal'>" + "<i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i>" + "</a>" +
                             "</td>" +
                     "</tr>"
                     /*/*href='#deleteCategoryModal'*/
@@ -78,40 +78,16 @@ $('#buttonSaveCategory').click(function () {
         dataType: 'json',                           // tipo de datos enviados al servidor
         success: function () {                      // función que se va a ejecutar si el pedido resulta exitoso          
             $("#addCategoryModal").modal('hide');   // una vez dado click en aceptar, el 'hide' hará que se cierre el modal automáticamente
-            cargarTabla();
-            //armarTabla(data);            
+            cargarTabla();       
         },
         error: function (req, stat, err) {          // función que se va a ejecutar si el pedido falla
             var error = eval("(" + req.responseText + ")");
             console.log(error);
-            //$('#lblMensaje').text(error.Message);
         }
     });
 });
-$('#deleteCategory').click(function () {
-    var id = $(this).attr("data-id");
-    $.ajax({
-        type: 'POST',
-        url: 'crud_Categories.aspx/DeletingCategory', // el URL del método que vamos a llamar        
-        data: '{eid:' + id + '}',         // los parámetros en formato JSON
-        contentType: "application/json; charset=utf-8",
-        dataType: 'json',                           // tipo de datos enviados al servidor
-        success: function () {
-            if (confirm("Are you sure you want to delete !") == true) {
-                alert("Data Deleted successfully");
-            } else {
-                alert("You have canceled the changes");
-            } 
-                //$("#deleteCategoryModal").modal('hide');
-                cargarTabla();
-            },    
-        error: function (req, stat, err) {          // función que se va a ejecutar si el pedido falla
-            var error = eval("(" + req.responseText + ")");
-            console.log(error);
-            //$('#lblMensaje').text(error.Message);
-        }
-    });
-});
+
+
 
 // PARA ELIMINAR //
 //$(document).on("click", ".edit", function () {
