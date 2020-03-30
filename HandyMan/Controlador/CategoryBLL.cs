@@ -74,14 +74,15 @@ namespace Controlador
         }
 
         // EDITAR CATEGORÍA
-        public void EditCategory(string description, bool state)
+        public void EditCategory(int id, string description, bool state)
         {
             DB_Connection data = new DB_Connection();
 
             try
             {
                 data.setStoreProcedure("SP_EditCategory");
-                
+
+                data.addParameters("@id", id);
                 data.addParameters("@description", description);
                 data.addParameters("@status", state);
 

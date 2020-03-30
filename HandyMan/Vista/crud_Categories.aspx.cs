@@ -45,5 +45,35 @@ namespace Vista
 
             return ListCategories;
         }
+
+        //[WebMethod, ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = false)]
+        //public static void EditingCategory(int id, string description, bool state)
+        //{
+        //    try
+        //    {
+        //        CategoryBLL categoryBLL = new CategoryBLL();
+
+        //        categoryBLL.EditCategory(id, description, state);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
+
+        [WebMethod, ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = false)]
+        public static void DeletingCategory(int eid)
+        {
+            try
+            {
+                CategoryBLL categoryBLL = new CategoryBLL();
+                categoryBLL.DeleteCategory(eid);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }

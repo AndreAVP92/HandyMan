@@ -98,7 +98,7 @@
 					</div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="button" class="btn btn-info" value="Save">
+						<input type="button" id="buttonEditSubCategory" class="btn btn-info" value="Save">
 					</div>
 				<%--</form>--%>
 			</div>
@@ -119,7 +119,7 @@
 					</div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="button" class="btn btn-danger" value="Delete">
+						<input type="button" id="buttonDeleteSubCategory" class="btn btn-danger" value="Delete">
 					</div>
 				<%--</form>--%>
 			</div>
