@@ -60,12 +60,13 @@ namespace Controlador
             connection.Close();
         }
 
-        internal void executeAction()   //ejecutar acción
+        internal int executeAction()   //ejecutar acción
         {
+            var registrosAfectados = 0;
             try
             {
                 connection.Open();
-                command.ExecuteNonQuery();
+                registrosAfectados = command.ExecuteNonQuery();
                 command.Parameters.Clear();
             }
             catch (Exception ex)
@@ -76,6 +77,8 @@ namespace Controlador
             {
                 closeConnection();
             }
+
+            return registrosAfectados;
         }
     }
 }

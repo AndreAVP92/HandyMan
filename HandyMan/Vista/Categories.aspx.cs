@@ -26,9 +26,10 @@ namespace Vista
         {
             try
             {
-                CategoryBLL categoryBLL = new CategoryBLL();
+                var categoryBLL = new CategoryBLL();
 
                 categoryBLL.AddCategory(description);
+                //GetCategories(true);
             }
             catch (Exception ex)
             {
@@ -36,38 +37,39 @@ namespace Vista
             }
         }
         
-        [WebMethod, ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = false)]
-        public static List<Category> GetCategories()
+        [WebMethod, ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
+        public static List<Category> GetCategories(bool? state = true)
+        //public static List<Category> GetCategories(bool state )
         {
-            CategoryBLL categoryBLL = new CategoryBLL();
+            var categoryBLL = new CategoryBLL();
 
-            ListCategories = categoryBLL.GetCategories();
+            ListCategories = categoryBLL.GetCategories(state);
 
             return ListCategories;
         }
 
-        //[WebMethod, ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = false)]
-        //public static void EditingCategory(int id, string description, bool state)
-        //{
-        //    try
-        //    {
-        //        CategoryBLL categoryBLL = new CategoryBLL();
-
-        //        categoryBLL.EditCategory(id, description, state);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
-
         [WebMethod, ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = false)]
-        public static void DeletingCategory(int eid)
+        public static void EditingCategory(int id, string description)
         {
             try
             {
-                CategoryBLL categoryBLL = new CategoryBLL();
-                categoryBLL.DeleteCategory(eid);
+                var categoryBLL = new CategoryBLL();
+
+                categoryBLL.EditCategory(id, description);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [WebMethod, ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = false)]
+        public static bool DeletingCategory(int eid)
+        {
+            try
+            {
+                var categoryBLL = new CategoryBLL();
+                return categoryBLL.DeleteCategory(eid);
             }
             catch (Exception ex)
             {

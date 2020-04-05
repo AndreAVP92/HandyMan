@@ -26,10 +26,10 @@
                       <a class="nav-link" href="#" >Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="crud_Categories.aspx">Categorías</a>
+                      <a class="nav-link" href="Categories.aspx">Categorías</a>
                     </li>
                       <li class="nav-item">
-                      <a class="nav-link" href="crud_SubCategories.aspx" >Sub Categorías</a>
+                      <a class="nav-link" href="SubCategories.aspx" >Sub Categorías</a>
                     </li>
                       <li class="nav-item">
                       <a class="nav-link" href="#">Medios de Pago</a>
@@ -60,7 +60,7 @@
     
     </form>
 
-    <script src="JavaScript/Crud_Categories.js"></script>
-    <script src="JavaScript/Crud_general.js"></script>
+    <script src="JavaScript/Categories.js"></script>
+    <%--<script src="JavaScript/Crud_general.js"></script>--%>
 </body>
 </html>

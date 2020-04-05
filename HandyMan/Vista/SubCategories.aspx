@@ -1,29 +1,29 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="crud_Categories.aspx.cs" Inherits="Vista.crud_Categories" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="SubCategories.aspx.cs" Inherits="Vista.crud_SubCategories" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>--%>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-	<div class="container" id="containerCategories">
-		
+	<div class="container" id="containerSubCategories">
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6">
-						<h2>Administrar <b>Categorías</b></h2>
+						<h2>Administrar <b>SubCategorías</b></h2>
 					</div>
 					<div class="col-sm-6">
-						<a href="#addCategoryModal" class="btn btn-success" data-toggle="modal" style="background:#9ACD32"><i class="material-icons">&#xE147;</i> <span>Agregar</span></a>
-						<%--<a href="#deleteCategoryModal" class="btn btn-danger" data-toggle="modal" style="background:#FF6347"><i class="material-icons">&#xE15C;</i> <span>Eliminar Todo</span></a>--%>						
+						<a href="#addSubCategoryModal" class="btn btn-success" data-toggle="modal" style="background:#9ACD32"><i class="material-icons">&#xE147;</i> <span>Agregar</span></a>
+						<a href="#deleteSubCategoryModal" class="btn btn-danger" data-toggle="modal" style="background:#FF6347"><i class="material-icons">&#xE15C;</i> <span>Eliminar Todo</span></a>						
 					</div>
                 </div>
-				
             </div>
             <table class="table table-striped table-hover" id="refresh">
                 <thead>
@@ -31,10 +31,10 @@
 						<th>Id</th>
                         <th>Descripción</th>
                         <th>Estado</th>
-						<th >Acción</th>
+						<th>Acción</th>
                     </tr>
                 </thead>
-				<tbody id="body_categories">
+				<tbody id="body_subcategories">
                     
 				</tbody>				
             </table>
@@ -59,12 +59,12 @@
         </div>
     </div>
 	<!-- Add Modal HTML -->
-	<div id="addCategoryModal" class="modal fade">
+	<div id="addSubCategoryModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<%--<form>--%>
 					<div class="modal-header">						
-						<h4 class="modal-title">Agregar Categoría</h4>
+						<h4 class="modal-title">Agregar SubCategoría</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">					
@@ -75,44 +75,42 @@
 					</div>
 					<div class="modal-footer">
 						<input type="button" id="buttonCancel"  class="btn btn-default" data-dismiss="modal" value="Cancelar">
-						<input type="button" id="buttonSaveCategory" class="btn btn-success" value="Agregar" style="background:#9ACD32">
+						<input type="button" id="buttonSaveSubCategory" class="btn btn-success" value="Agregar" style="background:#9ACD32">
 					</div>
 				<%--</form>--%>
 			</div>
 		</div>
 	</div>
 	<!-- Edit Modal HTML -->
-	<div id="editCategoryModal" class="modal fade">
+	<div id="editSubCategoryModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<%--<form>--%>
 					<div class="modal-header">						
-						<h4 class="modal-title">Editar Categoría</h4>
+						<h4 class="modal-title">Editar SubCategoría</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">					
 						<div class="form-group">
-							<label>Id</label>
-							<input type="text" id="idCategory" class="form-control" disabled>
 							<label>Descripción</label>
 							<input type="text" id="edit_inputDescription" class="form-control" required>
 						</div>					
 					</div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="button" id="buttonEditCategory" class="btn btn-info" value="Save"/>
+						<input type="button" id="buttonEditSubCategory" class="btn btn-info" value="Save">
 					</div>
 				<%--</form>--%>
 			</div>
 		</div>
 	</div>
 	<!-- Delete Modal HTML -->
-	<div id="deleteCategoryModal" class="modal fade">
+	<div id="deleteSubCategoryModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
-			
+				<%--<form>--%>
 					<div class="modal-header">						
-						<h4 class="modal-title">Eliminar Categoría</h4>
+						<h4 class="modal-title">Eliminar SubCategoría</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">					
@@ -121,10 +119,10 @@
 					</div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="button" id="buttonDeleteCategory" class="btn btn-danger" value="Delete">
+						<input type="button" id="buttonDeleteSubCategory" class="btn btn-danger" value="Delete">
 					</div>
+				<%--</form>--%>
 			</div>
 		</div>
 	</div>
-
 </asp:Content>

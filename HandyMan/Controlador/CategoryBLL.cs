@@ -11,16 +11,17 @@ namespace Controlador
     public class CategoryBLL
     {
         //LISTAR CATEGORÍAS
-        public List<Category> GetCategories()
+        public List<Category> GetCategories(bool? state = true)
+        //public List<Category> GetCategories(bool state)
         {
-            List<Category> lista = new List<Category>();
             Category aux;
-
-            DB_Connection data = new DB_Connection();
+            var lista = new List<Category>();         
+            var data = new DB_Connection();
 
             try
             {
-                data.setQuery("SELECT Id, Description, Status FROM CATEGORIES WHERE Status = 1");
+                data.setQuery("SELECT Id, Description, Status FROM CATEGORIES" + (state ?? false ? " WHERE Status = 1" : "") + " ORDER BY Description");
+                //etQuery("SELECT Id, Description, Status FROM CATEGORIES WHERE Status =" + state + " ORDER BY Description");
                 data.executeReader();
 
                 while (data.reader.Read())
@@ -46,7 +47,7 @@ namespace Controlador
         // AGREGAR CATEGORÍA
         public void AddCategory(string description) /*(Persona persona)*/
         {
-           DB_Connection data = new DB_Connection();
+            var data = new DB_Connection();
 
             try
             {
@@ -74,9 +75,9 @@ namespace Controlador
         }
 
         // EDITAR CATEGORÍA
-        public void EditCategory(int id, string description, bool state)
+        public void EditCategory(int id, string description)
         {
-            DB_Connection data = new DB_Connection();
+           var data = new DB_Connection();
 
             try
             {
@@ -84,7 +85,7 @@ namespace Controlador
 
                 data.addParameters("@id", id);
                 data.addParameters("@description", description);
-                data.addParameters("@status", state);
+                data.addParameters("@status", true);
 
                 data.executeAction();
             }
@@ -95,26 +96,28 @@ namespace Controlador
         }
 
         // ELIMINAR CATEGORÍA
-        public void DeleteCategory(int id)
+        public bool DeleteCategory(int id)
         {
-            DB_Connection data = new DB_Connection();
+            var data = new DB_Connection();
 
+            var registrosAfectados = 0;
             try
             {
-                data.setQuery("DELETE FROM CATEGORIES WHERE Id =" + id); 
-                data.executeAction();
+                data.setQuery("UPDATE CATEGORIES SET Status = 0 WHERE Id =" + id);
+                registrosAfectados = data.executeAction();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+            return registrosAfectados > 0;
         }
 
         //          VALIDACIONES        //
 
         public bool ValidateCategory(string description)
         {
-            DB_Connection data = new DB_Connection();
+            var data = new DB_Connection();
             
             try
             {
