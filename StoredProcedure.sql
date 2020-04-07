@@ -68,15 +68,15 @@ GO
 CREATE PROCEDURE SP_InsertSubCategory
     -- Parámetros de inserción a la tabla SUBCATEGORIES
 	@description NVARCHAR(30),
-	@status		 BIT,
 	-- Parámetros de inserción a la tabla SUBCATEGORIES_x_CATEGORIES
-	@idSubCategory INT OUTPUT,
+	--@idSubCategory INT OUT,
 	@idCategory INT
 AS
 BEGIN
     SET NOCOUNT ON;
 	BEGIN TRY
-		INSERT INTO SUBCATEGORIES(Description, Status) VALUES (@description, @status);
+		BEGIN TRANSACTION
+		INSERT INTO SUBCATEGORIES(Description, Status) VALUES (@description, 1);
 		COMMIT TRANSACTION;
 	END TRY
 	BEGIN CATCH
@@ -84,6 +84,8 @@ BEGIN
 		ROLLBACK TRANSACTION;
 	END CATCH
 	BEGIN TRY
+		BEGIN TRANSACTION
+		DECLARE @idSubCategory INT
 		SELECT @idSubCategory = @@IDENTITY -- recupero el último valor de idSubcategory para insertarlo en la tabla siguiente
 		INSERT INTO SUBCATEGORIES_x_CATEGORIES(IdSubCategory_SCC, IdCategory_SCC) VALUES (@idSubCategory, @idCategory);
 		COMMIT TRANSACTION;

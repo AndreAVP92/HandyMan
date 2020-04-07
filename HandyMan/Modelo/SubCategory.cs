@@ -18,5 +18,12 @@ namespace Modelo
             Description = description;
             State       = state;
         }
+        
+        public SubCategory(int id, string description, bool state)
+        {
+            Id = id;
+            Description = description;
+            State = state;
+        }
     }
 }

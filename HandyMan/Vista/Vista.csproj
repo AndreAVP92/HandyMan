@@ -94,6 +94,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Categories.aspx" />
+    <Content Include="JavaScript\SubCategories.js" />
+    <Content Include="Payments.aspx" />
     <Content Include="SubCategories.aspx" />
     <Content Include="Css\StyleSheetAdmin.css" />
     <Content Include="JavaScript\Categories.js" />
@@ -216,6 +218,13 @@
     </Compile>
     <Compile Include="Categories.aspx.designer.cs">
       <DependentUpon>Categories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Payments.aspx.cs">
+      <DependentUpon>Payments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Payments.aspx.designer.cs">
+      <DependentUpon>Payments.aspx</DependentUpon>
     </Compile>
     <Compile Include="SubCategories.aspx.cs">
       <DependentUpon>SubCategories.aspx</DependentUpon>

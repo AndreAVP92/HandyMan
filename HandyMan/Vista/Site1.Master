@@ -32,7 +32,7 @@
                       <a class="nav-link" href="SubCategories.aspx" >Sub Categorías</a>
                     </li>
                       <li class="nav-item">
-                      <a class="nav-link" href="#">Medios de Pago</a>
+                      <a class="nav-link" href="Payments.aspx">Medios de Pago</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="#">Estados de Servicios</a>
@@ -61,6 +61,6 @@
     </form>
 
     <script src="JavaScript/Categories.js"></script>
-    <%--<script src="JavaScript/Crud_general.js"></script>--%>
+    <script src="JavaScript/SubCategories.js"></script>
 </body>
 </html>

@@ -27,9 +27,7 @@ namespace Vista
             try
             {
                 var categoryBLL = new CategoryBLL();
-
                 categoryBLL.AddCategory(description);
-                //GetCategories(true);
             }
             catch (Exception ex)
             {
@@ -39,7 +37,6 @@ namespace Vista
         
         [WebMethod, ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
         public static List<Category> GetCategories(bool? state = true)
-        //public static List<Category> GetCategories(bool state )
         {
             var categoryBLL = new CategoryBLL();
 

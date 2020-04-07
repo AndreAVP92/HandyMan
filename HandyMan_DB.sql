@@ -1,6 +1,6 @@
 /* CREACION DE LA BASE DE DATOS */
 IF NOT EXISTS (SELECT name FROM master.dbo.sysdatabases WHERE name = N'HandyMan_DB')
-CREATE DATABASE HandyMan_DB
+DROP DATABASE HandyMan_DB
 GO
 
 -- USAMOS LA BASE DE DATOS

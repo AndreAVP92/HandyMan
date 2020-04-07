@@ -1,6 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Categories.aspx.cs" Inherits="Vista.crud_Categories" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Payments.aspx.cs" Inherits="Vista.Payments" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
@@ -9,15 +10,15 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-	<div class="container" id="containerCategories">		
+	<div class="container" id="containerPayments">		
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6">
-						<h2>Administrar <b>Categorías</b></h2>
+						<h2>Administrar <b>Medios de Pagos</b></h2>
 					</div>
 					<div class="col-sm-6">
-						<a href="#addCategoryModal" class="btn btn-success" data-toggle="modal" style="background:#9ACD32"><i class="material-icons">&#xE147;</i> <span>Agregar</span></a>					
+						<a href="#addPaymentModal" class="btn btn-success" data-toggle="modal" style="background:#9ACD32"><i class="material-icons">&#xE147;</i> <span>Agregar</span></a>					
 					</div>
                 </div>				
             </div>
@@ -38,7 +39,7 @@
 						<th>Acción</th>
                     </tr>
                 </thead>
-				<tbody id="body_categories">
+				<tbody id="body_payments">
                     
 				</tbody>				
             </table>
@@ -62,11 +63,11 @@
         </div>
     </div>
 	<!-- Add Modal HTML -->
-	<div id="addCategoryModal" class="modal fade">
+	<div id="addPaymentModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">						
-					<h4 class="modal-title">Agregar Categoría</h4>
+					<h4 class="modal-title">Agregar Medio de Pago</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">					
@@ -77,17 +78,17 @@
 				</div>
 				<div class="modal-footer">
 					<input type="button" id="buttonCancel"  class="btn btn-default" data-dismiss="modal" value="Cancelar">
-					<input type="button" id="buttonSaveCategory" class="btn btn-success" value="Agregar" style="background:#9ACD32">
+					<input type="button" id="buttonSavePayment" class="btn btn-success" value="Agregar" style="background:#9ACD32">
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- Edit Modal HTML -->
-	<div id="editCategoryModal" class="modal fade">
+	<div id="editPaymentModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
 					<div class="modal-header">						
-						<h4 class="modal-title">Editar Categoría</h4>
+						<h4 class="modal-title">Editar Medio de Pago</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">					
@@ -100,17 +101,17 @@
 					</div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="button" id="buttonEditCategory" class="btn btn-info" value="Save"/>
+						<input type="button" id="buttonEditPayment" class="btn btn-info" value="Save"/>
 					</div>
 			</div>
 		</div>
 	</div>
 	<!-- Delete Modal HTML -->
-	<div id="deleteCategoryModal" class="modal fade">
+	<div id="deletePaymentModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">			
 				<div class="modal-header">						
-					<h4 class="modal-title">Eliminar Categoría</h4>
+					<h4 class="modal-title">Eliminar Medio de Pago</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">					
@@ -119,7 +120,7 @@
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="button" id="buttonDeleteCategory" class="btn btn-danger" value="Delete">				
+					<input type="button" id="buttonDeletePayment" class="btn btn-danger" value="Delete">				
 				</div>
 			</div>
 		</div>

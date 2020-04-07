@@ -1,13 +1,4 @@
-﻿//$(document).ready(function () {
-//    $("#estados").change(function ()
-//    {
-//        estadosTriggered();
-//    });
-
-//    estadosTriggered();
-//});
-
-$(document).ready(function () {
+﻿$(document).ready(function () {
     let state = $("#estados").is(":checked");
     mostrarCategorias(state);
     $("#estados").change(function () {
@@ -16,9 +7,9 @@ $(document).ready(function () {
             mostrarCategorias(state);
         }
         else {
-        console.log(state);
-        mostrarCategorias(state);}
-        
+            console.log(state);
+            mostrarCategorias(state);
+        }     
     });
 });
 
@@ -59,40 +50,6 @@ function loadData(datos) {
     })
 }
 
-//$(document).ready(function () {
-//    loadData();
-//});
-
-//function loadData(){
-//    $.ajax({
-//        //url: '/Categories.aspx/GetCategories?state=' + state,
-//        url: 'Categories.aspx/GetCategories',
-//        type: 'GET',
-//        contentType: "application/json; charset=utf-8",
-//        dataType: "json",
-//        success: function (result) {
-//            var html = '';         
-//                $.each(result, function (key, item) {
-//                    //$("#body_categories").append(
-//                    html += "<tr>"; 
-//                    html += "<td>" + item.Id + "</td>";
-//                    html += "<td>" + item.Description + "</td>"; 
-//                    html += "<td><input type='checkbox' id='" + item.Id + "_state' disabled='disabled' " + (item.State ? "checked='checked'" : "") + "></td>"; 
-//                    html += "<td>"; 
-//                    html += "<a href='#editCategoryModal' class='edit' data-id = '" + item.Id + "' data-toggle='modal' >" + "<i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i>" + "</a>" 
-//                    html += "<a href='#deleteCategoryModal' class='delete' data-id = '" + item.Id + "' data-toggle='modal'>" + "<i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i>" + "</a>" 
-//                    html += "</td>"; 
-//                    html += "</tr>";
-//                    //);
-//                });
-//            $('.aaa').html(html); 
-//        },
-//        error: function (errormessage) {
-//            alert(errormessage.responseText);
-//        }       
-//    });
-//}
-
 /*              AGREGANDO REGISTRO              */
 $('#buttonSaveCategory').click(function () {
     var parametros = {
@@ -101,7 +58,7 @@ $('#buttonSaveCategory').click(function () {
     // Ahora hacemos la llamada tipo AJAX utilizando jQuery
     $.ajax({
         type: 'POST',                               // tipo de llamada (POST, GET)
-        url: 'Categories.aspx/AddingCategory', // el URL del método que vamos a llamar        
+        url: 'Categories.aspx/AddingCategory',      // el URL del método que vamos a llamar        
         data: JSON.stringify(parametros),           // los parámetros en formato JSON
         contentType: "application/json; charset=utf-8",
         dataType: 'json',                           // tipo de datos enviados al servidor
@@ -123,9 +80,7 @@ $(document).on("click", ".edit", function ()
     $('#editCategoryModal').focus();
     var id = $(this).attr("data-id");
     
-
     $('#edit_inputId').val(id);
-//$("#buttonEditCategory").attr("edit-id", id);
     console.log(id);
 })
 
@@ -151,7 +106,7 @@ $('#buttonEditCategory').click(function () {
         }
     });
 });
-
+/*             FIN MODIFICANDO REGISTRO             */
 
 /*              ELIMINANDO REGISTRO             */
 
@@ -182,6 +137,7 @@ $("#buttonDeleteCategory").click(function () {
         }
     });
 });
+/*           FIN ELIMINANDO REGISTRO             */
 
 
 

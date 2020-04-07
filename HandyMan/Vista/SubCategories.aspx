@@ -20,10 +20,16 @@
 						<h2>Administrar <b>SubCategorías</b></h2>
 					</div>
 					<div class="col-sm-6">
-						<a href="#addSubCategoryModal" class="btn btn-success" data-toggle="modal" style="background:#9ACD32"><i class="material-icons">&#xE147;</i> <span>Agregar</span></a>
-						<a href="#deleteSubCategoryModal" class="btn btn-danger" data-toggle="modal" style="background:#FF6347"><i class="material-icons">&#xE15C;</i> <span>Eliminar Todo</span></a>						
+						<a href="#addSubCategoryModal" class="btn btn-success" data-toggle="modal" style="background:#9ACD32"><i class="material-icons">&#xE147;</i> <span>Agregar</span></a>					
 					</div>
                 </div>
+            </div>
+			<div class="onoffswitch">
+                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="estados" checked="checked">
+                <label class="onoffswitch-label" for="estados">
+                    <span class="onoffswitch-inner"></span>
+                    <span class="onoffswitch-switch"></span>
+                </label>
             </div>
             <table class="table table-striped table-hover" id="refresh">
                 <thead>
@@ -47,12 +53,6 @@
 					<li > <a href="#" class="page-link">2</a> </li>
 					<li > <a href="#" class="page-link">3</a> </li>
 					<li > <a href="#" class="page-link">4</a> </li>
-					<%--<li class="page-item disabled"><a href="#">Previous</a></li>
-                    <li class="active"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">4</a></li>
-                    <li class="page-item"><a href="#" class="page-link">5</a></li>--%>
                     <li class="page-item"><a href="#" class="page-link">Next</a></li>
                 </ul>
             </div>
@@ -70,8 +70,18 @@
 					<div class="modal-body">					
 						<div class="form-group">
 							<label>Descripción</label>
-							<input type="text" id="add_inputDescription" class="form-control" required>
-						</div>						
+							<input type="text" id="add_inputDescription" class="form-control" required/> <%-- Ingresar Sub Categoría--%>
+							<%--Tuve que acudir al foreach porque con js no me está tomando el valor del item seleccionado--%>
+							<label >Categoría perteneciente</label>							
+							<select id="add_selectCategory" class="form-control" required >
+							<%foreach(var item in ListCategories)
+							{ %>
+								<option value= <% = item.Id %>><% = item.Description %></option>	 					
+							<% } %>
+							</select>
+							
+                            <%--<asp:DropDownList ID="add_selectCategory" runat="server" CssClass="form-control"/> <%-- Seleccionar Categoría al que va a pertenecer la subcategoría  onchange="SeleccionandoCategoria(this);"--%> <%----%>                       
+					</div>						
 					</div>
 					<div class="modal-footer">
 						<input type="button" id="buttonCancel"  class="btn btn-default" data-dismiss="modal" value="Cancelar">
@@ -92,6 +102,8 @@
 					</div>
 					<div class="modal-body">					
 						<div class="form-group">
+							<label>Id</label>
+							<input type="text" id="edit_inputId" class="form-control" disabled>
 							<label>Descripción</label>
 							<input type="text" id="edit_inputDescription" class="form-control" required>
 						</div>					

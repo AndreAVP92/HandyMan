@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using Modelo;
+using System.Data;
 
 namespace Controlador
 {
@@ -30,7 +31,7 @@ namespace Controlador
                                             Convert.ToString(data.reader["Description"]),
                                             Convert.ToBoolean(data.reader["Status"])    );
 
-                    lista.Add(aux);
+                    lista.Add(aux);                    
                 }
                 return lista;
             }
@@ -145,5 +146,18 @@ namespace Controlador
                 data.closeConnection();
             }
         }
+
+        //public int searchCategoryID(string category)
+        //{
+        //    var data = new DB_Connection();
+
+        //    string query = "SELECT Id FROM CATEGORIES WHERE Description=" + category;
+        //    SqlCommand cmd = new SqlCommand(query, data.connection);
+        //    data.connection.Open();
+        //    int idcategory = Convert.ToInt32(cmd.ExecuteScalar());
+        //    data.connection.Close();
+
+        //    return idcategory;
+        //}
     }
 }
