@@ -58,9 +58,6 @@
                 </footer>
             </div>
     
-    </form>
-
-    <script src="JavaScript/Categories.js"></script>
-    <script src="JavaScript/SubCategories.js"></script>
+    </form>  
 </body>
 </html>

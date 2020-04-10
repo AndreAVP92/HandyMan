@@ -17,6 +17,12 @@ namespace Modelo
         {
             Description = description;
             State       = state;
-        }        
+        }
+        public Payment (int id, string description, bool state)
+        {
+            Id = id;
+            Description = description;
+            State = state;
+        }
     }
 }

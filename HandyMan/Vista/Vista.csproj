@@ -94,6 +94,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Categories.aspx" />
+    <Content Include="JavaScript\Payments.js" />
     <Content Include="JavaScript\SubCategories.js" />
     <Content Include="Payments.aspx" />
     <Content Include="SubCategories.aspx" />

@@ -51,12 +51,6 @@
 					<li > <a href="#" class="page-link">2</a> </li>
 					<li > <a href="#" class="page-link">3</a> </li>
 					<li > <a href="#" class="page-link">4</a> </li>
-					<%--<li class="page-item disabled"><a href="#">Previous</a></li>
-                    <li class="active"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">4</a></li>
-                    <li class="page-item"><a href="#" class="page-link">5</a></li>--%>
                     <li class="page-item"><a href="#" class="page-link">Next</a></li>
                 </ul>
             </div>
@@ -97,6 +91,8 @@
 							<input type="text" id="edit_inputId" class="form-control" disabled>
 							<label>Descripción</label>
 							<input type="text" id="edit_inputDescription" class="form-control" required>
+							<label>Estado</label><br />
+							<button type="button" Id="button_onoff" class="btn btn-danger btn-sm">Deshabilitar</button>
 						</div>					
 					</div>
 					<div class="modal-footer">
@@ -125,5 +121,5 @@
 			</div>
 		</div>
 	</div>
-
+<script src="JavaScript/Payments.js"></script>
 </asp:Content>

@@ -120,7 +120,6 @@
 	<div id="deleteSubCategoryModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<%--<form>--%>
 					<div class="modal-header">						
 						<h4 class="modal-title">Eliminar SubCategoría</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -133,8 +132,8 @@
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
 						<input type="button" id="buttonDeleteSubCategory" class="btn btn-danger" value="Delete">
 					</div>
-				<%--</form>--%>
 			</div>
 		</div>
 	</div>
+<script src="JavaScript/SubCategories.js"></script>
 </asp:Content>

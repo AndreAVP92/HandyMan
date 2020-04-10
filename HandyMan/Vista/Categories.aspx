@@ -125,4 +125,5 @@
 		</div>
 	</div>
 
+<script src="JavaScript/Categories.js"></script>
 </asp:Content>

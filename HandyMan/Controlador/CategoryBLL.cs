@@ -86,7 +86,7 @@ namespace Controlador
 
                 data.addParameters("@id", id);
                 data.addParameters("@description", description);
-                data.addParameters("@status", true);
+                data.addParameters("@status", true); // me faltaría mejorar esta parte NO OLVIDAR!!!
 
                 data.executeAction();
             }
