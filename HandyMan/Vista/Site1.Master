@@ -35,7 +35,7 @@
                       <a class="nav-link" href="Payments.aspx">Medios de Pago</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">Estados de Servicios</a>
+                      <a class="nav-link" href="ServiceStatus.aspx">Estados del Servicio</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="#">Reportes Servicios</a>

@@ -95,8 +95,10 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Categories.aspx" />
     <Content Include="JavaScript\Payments.js" />
+    <Content Include="JavaScript\ServiceStates.js" />
     <Content Include="JavaScript\SubCategories.js" />
     <Content Include="Payments.aspx" />
+    <Content Include="ServiceStatus.aspx" />
     <Content Include="SubCategories.aspx" />
     <Content Include="Css\StyleSheetAdmin.css" />
     <Content Include="JavaScript\Categories.js" />
@@ -226,6 +228,13 @@
     </Compile>
     <Compile Include="Payments.aspx.designer.cs">
       <DependentUpon>Payments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceStatus.aspx.cs">
+      <DependentUpon>ServiceStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ServiceStatus.aspx.designer.cs">
+      <DependentUpon>ServiceStatus.aspx</DependentUpon>
     </Compile>
     <Compile Include="SubCategories.aspx.cs">
       <DependentUpon>SubCategories.aspx</DependentUpon>

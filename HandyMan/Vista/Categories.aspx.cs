@@ -18,7 +18,7 @@ namespace Vista
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         [WebMethod, ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = false)]
