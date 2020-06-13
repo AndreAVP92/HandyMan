@@ -44,7 +44,7 @@ IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'PHOTOS') AND 
 CREATE TABLE PHOTOS(
 	Id			INT				IDENTITY(1,1)	NOT NULL,
 	ImagePath	VARBINARY(MAX)						NULL 
-	-- la variable tipo Image se removerá en una futura versión de SQL --
+	-- la variable tipo Image se removerï¿½ en una futura versiï¿½n de SQL --
 
 	CONSTRAINT PK_IdPhoto PRIMARY KEY (Id)
 );
@@ -82,7 +82,7 @@ CREATE TABLE USERS(
 	Password		NVARCHAR(50)					NOT NULL,
 	IdAddress_U		INT									NULL,
 	LoginStatus		NVARCHAR(15)						NULL, --Conectado, Desconectado
-	RegisterDate	DATE							NOT NULL, --Sólo me interesa el dia, mes y año
+	RegisterDate	DATE							NOT NULL, --Sï¿½lo me interesa el dia, mes y aï¿½o
 	IdRole_U		INT								NOT NULL,
 	Status			BIT								NOT NULL
 

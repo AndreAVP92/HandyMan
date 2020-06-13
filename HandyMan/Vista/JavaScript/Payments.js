@@ -84,13 +84,14 @@ $(document).on("click", ".edit", function () {
 
     $('#edit_inputId').val(id);
     $('#edit_inputDescription').val(desc);
-    $('#edit_inputState').val(state); // Preguntar al profesor Ramiro
+    $('#edit_inputState').val(state);
 })
 
 $('#button_onoff').click(function () {
     var clase = $('#button_onoff').attr('class');
     // boolean activo = true;
     // Practicando OPERADOR TERNARIO. Muy lindo!
+    // No olvidar de darle funcionamiento a estos botones! 
     clase.includes('btn btn-success btn-sm') ? 
         (   $('#button_onoff').removeClass('btn btn-success btn-sm').text('Habilitar'),
             $('#button_onoff').addClass('btn btn-danger btn-sm').text('Deshabilitar')   )

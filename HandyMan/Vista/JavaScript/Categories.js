@@ -41,9 +41,9 @@ function loadData(datos) {
                     "<td id='miDes'>" + value.Description + "</td>" +
                     "<td><input type='checkbox' id='" + value.Id + "_state' disabled='disabled' " + (value.State ? "checked='checked'" : "") + "></td>" +
                     "<td>" +
-                        "<a href='#editCategoryModal' class='edit' data-id = '" + value.Id + "' data-toggle='modal' >" + "<i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i>" + "</a>" +
+                "<a href='#editCategoryModal' class='edit' data-id = '" + value.Id + "' data-description = '" + value.Description + "' data-toggle='modal' >" + "<i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i>" + "</a>" +
                         "<a href='#deleteCategoryModal' class='delete' data-id = '" + value.Id + "' data-toggle='modal'>" + "<i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i>" + "</a>" +
-                    "</td>" +
+                    "</td>" + 
                 "</tr>"
             ); 
         })
@@ -79,9 +79,10 @@ $(document).on("click", ".edit", function ()
 {
     $('#editCategoryModal').focus();
     var id = $(this).attr("data-id");
+    var desc = $(this).attr("data-description");
     
     $('#edit_inputId').val(id);
-    console.log(id);
+    $('#edit_inputDescription').val(desc);
 })
 
 $('#buttonEditCategory').click(function () {

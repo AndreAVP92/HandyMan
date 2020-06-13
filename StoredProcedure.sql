@@ -67,9 +67,9 @@ GO
 ---           STORED PROCEDURE INSERTAR SUBCATEGORIA						  ---
 ---------------------------------------------------------------------------------
 CREATE PROCEDURE SP_InsertSubCategory
-    -- Parámetros de inserción a la tabla SUBCATEGORIES
+    -- Parï¿½metros de inserciï¿½n a la tabla SUBCATEGORIES
 	@description NVARCHAR(30),
-	-- Parámetros de inserción a la tabla SUBCATEGORIES_x_CATEGORIES
+	-- Parï¿½metros de inserciï¿½n a la tabla SUBCATEGORIES_x_CATEGORIES
 	--@idSubCategory INT OUT,
 	@idCategory INT
 AS
@@ -87,7 +87,7 @@ BEGIN
 	BEGIN TRY
 		BEGIN TRANSACTION
 		DECLARE @idSubCategory INT
-		SELECT @idSubCategory = @@IDENTITY -- recupero el último valor de idSubcategory para insertarlo en la tabla siguiente
+		SELECT @idSubCategory = @@IDENTITY -- recupero el ï¿½ltimo valor de idSubcategory para insertarlo en la tabla siguiente
 		INSERT INTO SUBCATEGORIES_x_CATEGORIES(IdSubCategory_SCC, IdCategory_SCC) VALUES (@idSubCategory, @idCategory);
 		COMMIT TRANSACTION;
 	END TRY
